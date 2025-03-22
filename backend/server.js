@@ -3,23 +3,23 @@ const nodemailer = require("nodemailer");
 const cors = require("cors");
 const { body, validationResult } = require("express-validator");
 require("dotenv").config();
-const morgan = require('morgan'); // para logging
+const morgan = require('morgan'); 
 
 const app = express();
 
-// Logging con morgan
+
 app.use(morgan('combined'));
 
-// CORS configurado para orígenes específicos
+
 app.use(cors({
     origin: ["https://grlab.netlify.app", "http://localhost:5173"],
     methods: ["POST"],
     allowedHeaders: ["Content-Type"],
 }));
 
-app.use(express.json()); // Reemplaza body-parser
+app.use(express.json());
 
-// Validación de datos con express-validator
+
 const validateContactForm = [
     body("name").notEmpty().trim().escape(),
     body("email").isEmail().normalizeEmail(),
@@ -37,7 +37,7 @@ app.post("/contact", validateContactForm, async (req, res) => {
 
     try {
         const transporter = nodemailer.createTransport({
-            service: "gmail", // o otro servicio
+            service: "gmail", 
             auth: {
                 user: process.env.EMAIL_USER,
                 pass: process.env.EMAIL_PASS,
@@ -59,7 +59,7 @@ app.post("/contact", validateContactForm, async (req, res) => {
     }
 });
 
-// Middleware de manejo de errores
+
 app.use((err, req, res, next) => {
     console.error(err.stack);
     res.status(500).send("Algo salió mal!");
