@@ -271,7 +271,6 @@ p {
   margin-top: 70px;
 }
 
-
 .telephone {
   position: fixed;
   bottom: 20px;
@@ -830,17 +829,21 @@ form button:hover {
     padding: 30px 15px;
     gap: 2rem;
     transform: translateX(-100%);
-    transition: transform 0.3s ease-in-out;
-    will-change: transform;
   }
+
+  .nav-elements.transition {
+    transition: transform 0.3s ease-in-out;
+  }
+
   .nav-elements.open {
+    transition: transform 0.3s ease-in-out;
     transform: translateX(0);
   }
 
   .nav-elements ul {
     flex-direction: column;
     align-items: flex-start;
-    gap: .5rem;
+    gap: 0.5rem;
   }
 
   .logo2 a {

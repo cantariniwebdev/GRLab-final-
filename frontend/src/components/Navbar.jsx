@@ -8,6 +8,7 @@ import { RiMenu3Fill, RiCloseFill } from "react-icons/ri";
 const Navbar = () => {
   const [scrolling, setScrolling] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const[transition, setTransition] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -21,6 +22,15 @@ const Navbar = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
+  useEffect(() => {
+    if (isOpen) {
+      setTransition(true);
+    } else {
+      setTimeout(() => setTransition(false), 350);
+    }
+  }, [isOpen]);
+  
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -69,7 +79,7 @@ const Navbar = () => {
             GR Lab.
           </Link>
         </div>
-        <div className={`nav-elements ${isOpen ? "open" : ""}`}>
+        <div className={`nav-elements ${isOpen ? "open" : ""} ${transition ? "transition" : ""}`}>
           <div className="logo2" onClick={handleClose}>
             <Link to="/">GR Lab.</Link>
           </div>
