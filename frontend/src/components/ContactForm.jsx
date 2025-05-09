@@ -28,14 +28,14 @@ const ContactForm = () => {
             X5121 Despeñaderos
           </Link>
           <Link to="tel:+543547492763" target="_blank" rel="noopener noreferrer">
-            <FaPhone className="form-icon" /> 3547-492763
+            <FaPhone className="form-icon" /> 3547-49-2763
           </Link>
           <Link
                     to="https://wa.me/+5493547631868"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <IoLogoWhatsapp className="form-icon" />3547-631868
+                    <IoLogoWhatsapp className="form-icon" />3547-63-1868
                   </Link>
           <Link to="mailto:grearte1970@hotmail.com" target="_self" rel="noopener noreferrer">
             <FaEnvelope className="form-icon" /> grearte1970@hotmail.com

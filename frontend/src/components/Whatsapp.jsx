@@ -5,7 +5,7 @@ const Whatsapp = () => {
   return (
     <div className="telephone">
       <Link
-        to="https://wa.me/3547-631868"
+        to="https://wa.me/+5493547631868"
         target="_blank"
         rel="noopener noreferrer"
       >
