@@ -12,7 +12,7 @@ app.use(morgan('combined'));
 
 
 app.use(cors({
-    origin: ["https://grlab.netlify.app", "http://localhost:5173"],
+    origin: ["https://grlab.netlify.app"],
     methods: ["POST"],
     allowedHeaders: ["Content-Type"],
 }));
