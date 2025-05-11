@@ -916,6 +916,7 @@ form button:hover {
 
   .footer-contact {
     padding: 0;
+    align-items: center;
   }
 
   .footer-logo {
