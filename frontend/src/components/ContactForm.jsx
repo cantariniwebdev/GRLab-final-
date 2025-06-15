@@ -28,7 +28,7 @@ const ContactForm = () => {
             X5121 Despeñaderos
           </Link>
           <Link to="tel:+543547492763" target="_blank" rel="noopener noreferrer">
-            <FaPhone className="form-icon" /> 3547-49-2763
+            <FaPhone className="form-icon" /> 03547-49-2763
           </Link>
           <Link
                     to="https://wa.me/+5493547631868"
