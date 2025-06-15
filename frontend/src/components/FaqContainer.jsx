@@ -1,14 +1,26 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { useEffect, useRef, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import AnimationScroll from "./AnimationScroll";
-
 
 const FaqContainer = () => {
   const [accordionOpen, setAccordionOpen] = useState(null);
+  const location = useLocation();
+
+  const refs = useRef({});
 
   const handleClick = (id) => {
     setAccordionOpen(accordionOpen === id ? null : id);
   };
+
+  useEffect(() => {
+    if (location.state?.openId) {
+      const idToOpen = location.state.openId;
+      setAccordionOpen(idToOpen);
+      setTimeout(() => {
+        refs.current[idToOpen]?.scrollIntoView({ behavior: "smooth", block: "start" });
+      }, 100); 
+    }
+  }, [location.state]);
 
   const accordionData = [
     {
@@ -20,13 +32,13 @@ const FaqContainer = () => {
             El horario de atención general es de lunes a viernes de <strong>8:00</strong> a <strong>13:00</strong> y de <strong>17:00</strong> a <strong>19:30</strong> horas.
           </p>
           <p className="paragraph">
-            Las extracciones se realizan de <strong>8:00</strong> a <strong>11:00</strong> horas y para las extracciones a domicilio debe solicitar turno. Haga click <Link to="/contact">Aqui</Link> para pedir su cita.
+            Las extracciones se realizan de <strong>8:00</strong> a <strong>11:00</strong> horas y para las extracciones a domicilio debe solicitar turno. Haga click <Link to="/contact">Aquí</Link> para pedir su cita.
           </p>
         </>
       ),
     },
     {
-      id: 5,
+      id: 2,
       title: "¿ATIENDEN POR OBRA SOCIAL?",
       content: (
         <>
@@ -70,7 +82,7 @@ const FaqContainer = () => {
       ),
     },
     {
-      id: 2,
+      id: 3,
       title: "¿ES NECESARIO SACAR TURNO PREVIAMENTE?",
       content: (
         <>
@@ -81,7 +93,7 @@ const FaqContainer = () => {
       ),
     },
     {
-      id: 3,
+      id: 4,
       title: "¿QUÉ SIGNIFICA HACER AYUNO PREVIO?",
       content: (
         <>
@@ -110,7 +122,7 @@ const FaqContainer = () => {
       ),
     },
     {
-      id: 4,
+      id: 5,
       title: "¿CÓMO PUEDO SABER EL PRECIO DE LOS ANÁLISIS?",
       content: (
         <>
@@ -146,15 +158,12 @@ const FaqContainer = () => {
           </p>
           <ol className="faq-list">
             <li>
-              Pedido médico con fecha actual (tienen validez de 30 días -
-              EXCEPTO PAMI CON VALIDEZ DE 150 DIAS), diagnóstico, sello y firma
-              del médico solicitante.
+              Pedido médico con fecha actual (tienen validez de 30 días - EXCEPTO PAMI CON VALIDEZ DE 150 DÍAS), diagnóstico, sello y firma del médico solicitante.
             </li>
             <li>
-              Credencial de medicina prepaga u obra social (consulte aquí los
-              requerimientos específicos y obras sociales atendidas).
+              Credencial de medicina prepaga u obra social (consulte aquí los requerimientos específicos y obras sociales atendidas).
             </li>
-            <li>Ayuno previo correspondiente </li>
+            <li>Ayuno previo correspondiente</li>
             <li>Muestras necesarias según la solicitud de análisis.</li>
           </ol>
         </>
@@ -166,8 +175,7 @@ const FaqContainer = () => {
       content: (
         <>
           <p className="paragraph">
-            Seguir la prescripción médica. Los medicamentos que deben tomarse la
-            mañana del estudio, hacerlo después de la extracción.
+            Seguir la prescripción médica. Los medicamentos que deben tomarse la mañana del estudio, hacerlo después de la extracción.
           </p>
         </>
       ),
@@ -178,8 +186,7 @@ const FaqContainer = () => {
       content: (
         <>
           <p className="paragraph">
-            No. Los resultados pueden enviarse vía e-mail o por WhatsApp, previo
-            acuerdo con el personal de laboratorio.
+            No. Los resultados pueden enviarse vía e-mail o por WhatsApp, previo acuerdo con el personal de laboratorio.
           </p>
         </>
       ),
@@ -190,8 +197,16 @@ const FaqContainer = () => {
     <div className="accordion-container">
       <div className="accordion">
         {accordionData.map(({ id, title, content }) => (
-          <AnimationScroll animationClass="accordion-item" visibleClass="down" key={id}>
-            <div className="accordion-title" onClick={() => handleClick(id)}>
+          <AnimationScroll
+            animationClass="accordion-item"
+            visibleClass="down"
+            key={id}
+          >
+            <div
+              ref={(el) => (refs.current[id] = el)}
+              className="accordion-title"
+              onClick={() => handleClick(id)}
+            >
               <div>
                 <h2>{title}</h2>
               </div>

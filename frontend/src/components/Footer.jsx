@@ -20,7 +20,7 @@ const Footer = () => {
         <div className="useful">
           <h2>Enlaces útiles</h2>
           <Link to="/contact">Extracciones a domicilio</Link>
-          <Link to="/faqs">Mutuales</Link>
+          <Link to="/faqs" state={{ openId: 2 }}>Mutuales</Link>
         </div>
         <div className="footer-contact">
           <h2>Horarios de atención</h2>
