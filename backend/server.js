@@ -8,13 +8,14 @@ const app = express();
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 app.use(cors({
-  origin: ["https://grlab.netlify.app"],
+  origin: ["https://grlab.netlify.app"], // tu frontend
   methods: ["POST"],
   allowedHeaders: ["Content-Type"],
 }));
 
 app.use(express.json());
 
+// Validación del formulario
 const validateContactForm = [
   body("name").notEmpty().trim().escape().isLength({ max: 100 }),
   body("email").notEmpty().isEmail().normalizeEmail(),
@@ -31,10 +32,11 @@ app.post("/contact", validateContactForm, async (req, res) => {
   const { name, email, phone, content } = req.body;
 
   try {
+    // Envía el correo con Resend
     await resend.emails.send({
-      from: process.env.EMAIL_USER, // debe estar verificado en Resend
-      to: process.env.EMAIL_USER,   // tu correo destino
-      reply_to: email,              // para responder al remitente
+      from: "Formulario GRLab <onboarding@resend.dev>", // dominio público de Resend
+      to: process.env.EMAIL_USER, // tu correo destino (ej: sebastian@gmail.com)
+      reply_to: email,            // para poder responder al usuario
       subject: `Mensaje de ${name}`,
       text: `Nombre: ${name}\nCorreo: ${email}\nTeléfono: ${phone}\nMensaje: ${content}`,
     });
@@ -46,6 +48,7 @@ app.post("/contact", validateContactForm, async (req, res) => {
   }
 });
 
+// Middleware de error
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).send("Algo salió mal!");
