@@ -36,7 +36,7 @@ app.post("/contact", validateContactForm, async (req, res) => {
     await resend.emails.send({
       from: "Formulario GRLab <onboarding@resend.dev>", // dominio público de Resend
       to: process.env.EMAIL_USER, // tu correo destino (ej: sebastian@gmail.com)
-      reply_to: email,            // para poder responder al usuario
+      replyTo: email,            // para poder responder al usuario
       subject: `Mensaje de ${name}`,
       text: `Nombre: ${name}\nCorreo: ${email}\nTeléfono: ${phone}\nMensaje: ${content}`,
     });
