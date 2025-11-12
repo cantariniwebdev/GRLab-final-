@@ -15,7 +15,7 @@ const upload = multer({
 });
 
 app.use(cors({
-  origin: ["https://grlab.netlify.app"],
+  origin: ["https://grlaboratorio.com"],
   methods: ["POST"],
   allowedHeaders: ["Content-Type"],
 }));
