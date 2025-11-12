@@ -8,6 +8,7 @@ const Form = () => {
     content: "",
   });
 
+  const [files, setFiles] = useState([]);
   const [successMessage, setSuccessMessage] = useState(false);
   const [errorMessage, setErrorMessage] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -17,6 +18,16 @@ const Form = () => {
     setFormData({ ...formData, [name]: value });
   };
 
+  const handleFileChange = (event) => {
+    const newFiles = Array.from(event.target.files);
+    setFiles((prev) => [...prev, ...newFiles]);
+    event.target.value = null; // Para permitir seleccionar los mismos archivos otra vez
+  };
+
+  const handleRemoveFile = (index) => {
+    setFiles((prev) => prev.filter((_, i) => i !== index));
+  };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     setIsSubmitting(true);
@@ -24,11 +35,23 @@ const Form = () => {
     setErrorMessage(false);
 
     try {
-      const response = await fetch("https://grlab-final-1.onrender.com/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+      const data = new FormData();
+      data.append("name", formData.name);
+      data.append("email", formData.email);
+      data.append("phone", formData.phone);
+      data.append("content", formData.content);
+
+      files.forEach((file) => {
+        data.append("files", file); // "files" debe coincidir con lo que espera tu backend
       });
+
+      const response = await fetch(
+        "https://grlab-final-1.onrender.com/contact",
+        {
+          method: "POST",
+          body: data,
+        }
+      );
 
       if (response.ok) {
         setSuccessMessage(true);
@@ -38,6 +61,7 @@ const Form = () => {
           phone: "",
           content: "",
         });
+        setFiles([]);
       } else {
         setErrorMessage(true);
       }
@@ -84,11 +108,42 @@ const Form = () => {
         value={formData.content}
         onChange={handleChange}
       ></textarea>
+
+      <input
+        type="file"
+        accept="image/*,application/pdf"
+        multiple
+        onChange={handleFileChange}
+      />
+
+      <div>
+        {files.map((file, index) => (
+          <div key={index} >
+            <span>{file.name}</span>
+            <button
+              type="button"
+              onClick={() => handleRemoveFile(index)}
+            >
+              X
+            </button>
+          </div>
+        ))}
+      </div>
+
       <button type="submit" disabled={isSubmitting}>
         {isSubmitting ? "Enviando..." : "Enviar"}
       </button>
-      {successMessage && <div className="warning"><p >Mensaje enviado con éxito!</p></div>}
-      {errorMessage &&  <div className="warning"><p > Error al enviar el mensaje</p></div>}
+
+      {successMessage && (
+        <div className="warning">
+          <p>Mensaje enviado con éxito!</p>
+        </div>
+      )}
+      {errorMessage && (
+        <div className="warning">
+          <p>Error al enviar el mensaje</p>
+        </div>
+      )}
     </form>
   );
 };
