@@ -849,7 +849,7 @@ form button:hover {
 
 
 .file-preview {
-  margin: 5px 0 5px 0;
+  margin: 3px 0 ;
   display: flex;
   flex-direction: column;
   align-items: start;
