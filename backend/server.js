@@ -8,10 +8,10 @@ const { Resend } = require("resend");
 const app = express();
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-// Configurar multer: archivos en memoria
+
 const upload = multer({
   storage: multer.memoryStorage(),
-  limits: { fileSize: 10 * 1024 * 1024 } // máximo 10MB por archivo
+  limits: { fileSize: 10 * 1024 * 1024 } 
 });
 
 app.use(cors({
@@ -20,10 +20,7 @@ app.use(cors({
   allowedHeaders: ["Content-Type"],
 }));
 
-// NO usar express.json() en rutas con archivos
-// app.use(express.json());
 
-// Validación del formulario
 const validateContactForm = [
   body("name").notEmpty().trim().escape().isLength({ max: 100 }),
   body("email").notEmpty().isEmail().normalizeEmail(),
@@ -33,7 +30,7 @@ const validateContactForm = [
 
 app.post(
   "/contact",
-  upload.array("files"),      // Aquí recibimos múltiples archivos
+  upload.array("files"),    
   validateContactForm,
   async (req, res) => {
 
@@ -44,7 +41,7 @@ app.post(
 
     const { name, email, phone, content } = req.body;
 
-    // Convertir archivos a adjuntos para Resend
+ 
     const attachments = (req.files || []).map((file) => ({
       filename: file.originalname,
       content: file.buffer
@@ -72,7 +69,7 @@ app.post(
   }
 );
 
-// Middleware de error
+
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).send("Algo salió mal!");

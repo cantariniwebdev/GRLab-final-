@@ -21,7 +21,7 @@ const Form = () => {
   const handleFileChange = (event) => {
     const newFiles = Array.from(event.target.files);
     setFiles((prev) => [...prev, ...newFiles]);
-    event.target.value = null; // Para permitir seleccionar los mismos archivos otra vez
+    event.target.value = null;
   };
 
   const handleRemoveFile = (index) => {
@@ -42,7 +42,7 @@ const Form = () => {
       data.append("content", formData.content);
 
       files.forEach((file) => {
-        data.append("files", file); // "files" debe coincidir con lo que espera tu backend
+        data.append("files", file);
       });
 
       const response = await fetch(
@@ -109,22 +109,30 @@ const Form = () => {
         onChange={handleChange}
       ></textarea>
 
-      <input
-        type="file"
-        accept="image/*,application/pdf"
-        multiple
-        onChange={handleFileChange}
-      />
+      <div className="input-file-wrapper">
+        <label className="input-file-label" htmlFor="files">
+          Adjuntar archivo
+        </label>
+        <input
+          type="file"
+          id="files"
+          accept="image/*,application/pdf"
+          name="files"
+          multiple
+          onChange={handleFileChange}
+        />
+      </div>
 
-      <div>
+      <div className="file-preview">
         {files.map((file, index) => (
-          <div key={index} >
-            <span>{file.name}</span>
+          <div key={index} className="file-preview-item">
+            {file.name}
             <button
               type="button"
+              className="file-remove-btn"
               onClick={() => handleRemoveFile(index)}
             >
-              X
+              ×
             </button>
           </div>
         ))}
@@ -133,7 +141,13 @@ const Form = () => {
       <button type="submit" disabled={isSubmitting}>
         {isSubmitting ? "Enviando..." : "Enviar"}
       </button>
-
+      {isSubmitting && (
+        <div className="warning">
+          <p>
+            No cierre la página hasta que el mensaje se haya enviado
+          </p>
+        </div>
+      )}
       {successMessage && (
         <div className="warning">
           <p>Mensaje enviado con éxito!</p>
