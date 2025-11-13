@@ -141,13 +141,7 @@ const Form = () => {
       <button type="submit" disabled={isSubmitting}>
         {isSubmitting ? "Enviando..." : "Enviar"}
       </button>
-      {isSubmitting && (
-        <div className="warning">
-          <p>
-            No cierre la página hasta que el mensaje se haya enviado
-          </p>
-        </div>
-      )}
+    
       {successMessage && (
         <div className="warning">
           <p>Mensaje enviado con éxito!</p>
