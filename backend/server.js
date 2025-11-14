@@ -49,7 +49,7 @@ app.post(
 
     try {
       await resend.emails.send({
-        from: "Formulario GRLab <onboarding@resend.dev>",
+        from: "Formulario GRLab <contacto@grlaboratorio.com>",
         to: process.env.EMAIL_USER,
         replyTo: email,
         subject: `Mensaje de ${name}`,

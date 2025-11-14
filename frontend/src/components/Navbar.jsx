@@ -78,10 +78,12 @@ const Navbar = () => {
           <Link to="/" onClick={scrollToTop}>
             GR Lab.
           </Link>
+          <p className="nav-logo">Dr. Germán Rearte M.P. 3407</p>
         </div>
         <div className={`nav-elements ${isOpen ? "open" : ""} ${transition ? "transition" : ""}`}>
           <div className="logo2" onClick={handleClose}>
             <Link to="/">GR Lab.</Link>
+            <p className="nav-logo2">Dr. Germán Rearte M.P. 3407</p>
           </div>
           <ul>{pagesList}</ul>
           <div className="action_btn" onClick={handleClose}>

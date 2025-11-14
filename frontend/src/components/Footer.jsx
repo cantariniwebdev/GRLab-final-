@@ -16,6 +16,7 @@ const Footer = () => {
       <AnimationScroll animationClass="footer-slice" visibleClass="down">
         <div className="footer-logo">
           <Link to="/" onClick={scrollToTop}>GR Lab.</Link>
+          <p>Dr. Germán Rearte M.P. 3407</p>
         </div>
         <div className="useful">
           <h2>Enlaces útiles</h2>

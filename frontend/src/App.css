@@ -179,16 +179,41 @@ p {
   background-color: rgba(0, 0, 0, 0.767);
 }
 
+.logo{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
 .logo a {
   font-size: 2.2rem;
   font-weight: bold;
   color: var(--second-color);
 }
+
+.logo2{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .logo2 a {
   display: none;
   font-size: 2.2rem;
   font-weight: bold;
   color: var(--second-color);
+}
+
+.nav-logo{
+  color: white;
+  font-size: 0.70rem;
+}
+
+.nav-logo2{
+  color: white;
+  display: none;
+  font-size: 0.70rem;
 }
 
 .nav-elements {
@@ -477,10 +502,22 @@ form button:hover {
   color: var(--third-color);
 }
 
+.footer-logo{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .footer-logo a {
   color: var(--third-color);
   font-size: 2.2rem;
   font-weight: bold;
+}
+
+.footer-logo p{
+  color: var(--third-color);
+  font-size: 0.70rem;
 }
 
 .footer-contact {
@@ -921,6 +958,10 @@ form button:hover {
   .logo2 a {
     display: block;
   }
+
+  .nav-logo2{
+  display: block;
+}
 
   .menu-icon {
     display: block;
