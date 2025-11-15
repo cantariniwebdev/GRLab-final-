@@ -23,8 +23,8 @@ app.use(cors({
 
 const validateContactForm = [
   body("name").notEmpty().trim().escape().isLength({ max: 100 }),
-  body("email").notEmpty().isEmail().normalizeEmail(),
-  body("phone").notEmpty().trim().escape(),
+  body("email").notEmpty().isEmail(),
+  body("phone").notEmpty().isLength({ min: 6, max: 20 }).trim().escape(),
   body("content").notEmpty().trim().escape().isLength({ max: 5000 }),
 ];
 
