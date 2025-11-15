@@ -91,14 +91,16 @@ const Form = () => {
         value={formData.email}
         onChange={handleChange}
       />
-      <input
-        type="number"
+         <input
+        type="tel"
         placeholder="Teléfono*"
         required
         name="phone"
         value={formData.phone}
         onChange={handleChange}
-      />
+        pattern="[0-9]{6,}"
+        title="El teléfono debe tener al menos 6 números"
+        />
       <textarea
         cols="30"
         rows="10"
@@ -141,7 +143,7 @@ const Form = () => {
       <button type="submit" disabled={isSubmitting}>
         {isSubmitting ? "Enviando..." : "Enviar"}
       </button>
-    
+
       {successMessage && (
         <div className="warning">
           <p>Mensaje enviado con éxito!</p>
