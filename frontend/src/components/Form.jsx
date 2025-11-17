@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { FaPaperclip } from "react-icons/fa6";
 
 const Form = () => {
   const [formData, setFormData] = useState({
@@ -113,7 +114,8 @@ const Form = () => {
 
       <div className="input-file-wrapper">
         <label className="input-file-label" htmlFor="files">
-          Adjuntar archivo
+        <FaPaperclip className="attach" />
+         Adjuntar archivo
         </label>
         <input
           type="file"

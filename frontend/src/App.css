@@ -866,7 +866,10 @@ form button:hover {
 }
 
 .input-file-label {
-  display: inline-block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
   padding: 12px 25px;
   background-color: transparent;
   border: solid 1px #3ccaca;
@@ -876,6 +879,10 @@ form button:hover {
   font-weight: bold;
   border-radius: 5px;
   cursor: pointer;
+}
+
+.attach{
+  font-size: 1.3rem;
 }
 
 .input-file-label:hover {
