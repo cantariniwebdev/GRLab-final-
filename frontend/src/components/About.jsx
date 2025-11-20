@@ -8,11 +8,10 @@ const About = () => {
       <AnimationScroll animationClass="about-text" visibleClass="down"> 
         <h2>¿Quienes somos?</h2>
         <p>
-        GR Lab es un laboratorio de análisis clínicos con una trayectoria de 30 años, comprometido con la excelencia en el diagnóstico médico. Desde su fundación, ha trabajado con tecnología de vanguardia.
+        Con más de 30 años de trayectoria, el Laboratorio de Análisis Clínicos dirigido por el Dr. Germán Rearte, bioquímico especializado, se ha consolidado como una institución referente en el diagnóstico confiable y de alta precisión. Desde sus inicios, el laboratorio ha mantenido un compromiso inquebrantable con la calidad, incorporando avances tecnológicos y métodos actualizados para ofrecer resultados exactos y oportunos a cada paciente.
         </p>
         <p>
-        Desde sus inicios, GR Lab se ha enfocado en brindar un servicio eficiente, seguro y accesible a la comunidad. Con una infraestructura moderna y procesos rigurosos de control de calidad, el laboratorio se ha convertido en un referente en el sector de la salud.
-        Sú misión es contribuir al bienestar de sus pacientes, proporcionando diagnósticos confiables que apoyen la labor de médicos y especialistas.
+        A lo largo de tres décadas, el laboratorio no solo ha brindado servicios diagnósticos, sino que también ha construido una relación de confianza con la comunidad, basada en la transparencia y el profesionalismo. Gracias a la visión del Dr. Germán Rearte, la institución continúa creciendo y adaptándose a las necesidades actuales, reafirmando su compromiso con la salud y el bienestar de sus pacientes.
         </p>
       </AnimationScroll>
       <AnimationScroll animationClass="about-pic" visibleClass="center" >
